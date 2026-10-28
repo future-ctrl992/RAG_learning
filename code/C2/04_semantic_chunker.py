@@ -11,7 +11,7 @@ embeddings = HuggingFaceEmbeddings(
 # 初始化 SemanticChunker
 text_splitter = SemanticChunker(
     embeddings,
-    breakpoint_threshold_type="percentile" # 也可以是 "standard_deviation", "interquartile", "gradient"
+    breakpoint_threshold_type="percentile" # 也可以是 "标准差法:standard_deviation", "四分位距法:interquartile", "梯度法:gradient"
 )
 
 loader = TextLoader("../../data/C2/txt/蜂医.txt", encoding="utf-8")

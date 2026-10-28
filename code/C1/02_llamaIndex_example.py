@@ -7,19 +7,21 @@ from llama_index.embeddings.huggingface import HuggingFaceEmbedding
 
 load_dotenv()
 
-# 使用 AIHubmix
+# 使用 AIHubmix（需要有 AIHubmix 的密钥，DeepSeek 密钥在这里会 401）
+# Settings.llm = OpenAILike(
+#     model="glm-4.7-flash-free",
+#     api_key=os.getenv("DEEPSEEK_API_KEY"),
+#     api_base="https://aihubmix.com/v1",
+#     is_chat_model=True
+# )
+
+# 使用 DeepSeek 官方接口
 Settings.llm = OpenAILike(
-    model="glm-4.7-flash-free",
+    model="deepseek-chat",
     api_key=os.getenv("DEEPSEEK_API_KEY"),
-    api_base="https://aihubmix.com/v1",
+    api_base="https://api.deepseek.com",
     is_chat_model=True
 )
-
-# Settings.llm = OpenAI(
-#     model="deepseek-chat",
-#     api_key=os.getenv("DEEPSEEK_API_KEY"),
-#     api_base="https://api.deepseek.com"
-# )
 Settings.embed_model = HuggingFaceEmbedding("BAAI/bge-small-zh-v1.5")
 
 docs = SimpleDirectoryReader(input_files=["../../data/C1/markdown/easy-rl-chapter1.md"]).load_data()
